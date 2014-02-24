@@ -9,8 +9,6 @@
 # pidfile: /usr/local/apache2/logs/httpd.pid
 # config: /usr/local/apache2/conf/httpd.conf
 
-# Source function library.
-. /etc/rc.d/init.d/functions
 
 if [ -f /etc/sysconfig/httpd ]; then
         . /etc/sysconfig/httpd
@@ -34,7 +32,7 @@ RETVAL=0
 # are expected to behave here.
 start() {
         echo -n $"Starting $prog: "
-        daemon $httpd $OPTIONS
+        $httpd $OPTIONS
         RETVAL=$?
         echo
         [ $RETVAL = 0 ] && touch /var/lock/subsys/httpd
@@ -42,14 +40,14 @@ start() {
 }
 stop() {
         echo -n $"Stopping $prog: "
-        killproc $httpd
+        pkill -u root,daemon $prog
         RETVAL=$?
         echo
         [ $RETVAL = 0 ] && rm -f /var/lock/subsys/httpd $pid
 }
 reload() {
         echo -n $"Reloading $prog: "
-        killproc $httpd -HUP
+        pkill -HUP -u root,daemon $prog
         RETVAL=$?
         echo
 }
