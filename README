@@ -1,3 +1,4 @@
 Repo store configs/scripts for compiling installing software. Currently have:
     1. vim compile config (with Ubuntu lib dependencies)
+    2. Apache httpd compile config (uses apr + apr-util submodules + some libs)
 
