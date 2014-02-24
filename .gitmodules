@@ -1,3 +1,6 @@
 [submodule "vim"]
 	path = vim
 	url = https://github.com/b4winckler/vim
+[submodule "httpd"]
+	path = httpd
+	url = git://git.apache.org/httpd.git
