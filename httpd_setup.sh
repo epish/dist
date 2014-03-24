@@ -27,4 +27,12 @@ if [ $? -eq 0]; then
     echo "Apache httpd is installed successfully!"
 else
     echo "[ERROR] Apache install failed!"
+    exit 2
 fi
+
+#copying init.d script
+sudo cp -f httpd.sh /etc/init.d/httpd
+#fixing sbin/insserv: No such file or directory" error
+cd /sbin && sudo ln -s /usr/lib/insserv/insserv /sbin/insserv
+sudo chkconfig --level 2345 httpd on
+chkconfig --list  httpd
